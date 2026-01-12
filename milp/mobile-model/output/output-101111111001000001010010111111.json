@@ -1,0 +1,290 @@
+{
+    "name": "single-experiment-sim-lab",
+    "duration": 60,
+    "radiusOfReach": 50,
+    "radiusOfInter": 90,
+    "region": [
+        -200,
+        -100,
+        200,
+        100
+    ],
+    "simulationElements": {
+        "fixedMotes": [
+            {
+                "position": [
+                    0.0,
+                    0.0
+                ],
+                "name": "root",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    -29.0,
+                    32.0
+                ],
+                "name": "node1",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    -71.0,
+                    13.0
+                ],
+                "name": "node2",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    -102.0,
+                    -21.0
+                ],
+                "name": "node3",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    -91.0,
+                    -59.0
+                ],
+                "name": "node4",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    -73.0,
+                    42.0
+                ],
+                "name": "node5",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    -11.0,
+                    -45.5
+                ],
+                "name": "node6",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    36.0,
+                    -50.0
+                ],
+                "name": "node7",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    27.0,
+                    39.0
+                ],
+                "name": "node8",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    74.0,
+                    29.0
+                ],
+                "name": "node9",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    114.0,
+                    -33.0
+                ],
+                "name": "node10",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    87.0,
+                    44.0
+                ],
+                "name": "node11",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    -124.73684210526316,
+                    -55.78947368421053
+                ],
+                "name": "node12",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    -108.42105263157896,
+                    9.736842105263158
+                ],
+                "name": "node13",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    -54.21052631578948,
+                    -12.631578947368421
+                ],
+                "name": "node14",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    38.684210526315795,
+                    -23.68421052631579
+                ],
+                "name": "node15",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    88.15789473684211,
+                    -54.73684210526316
+                ],
+                "name": "node16",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    67.10526315789474,
+                    -42.89473684210527
+                ],
+                "name": "node17",
+                "sourceCode": "node.c"
+            },
+            {
+                "position": [
+                    -11.31578947368421,
+                    -88.94736842105263
+                ],
+                "name": "node18",
+                "sourceCode": "node.c"
+            }
+        ],
+        "mobileMotes": [
+            {
+                "functionPath": [
+                    [
+                        "70",
+                        "44 + 31 * t"
+                    ],
+                    [
+                        "70 - 140 * t",
+                        "75"
+                    ],
+                    [
+                        "-70",
+                        "75 - 31 * t"
+                    ],
+                    [
+                        "-70 + 140 * t",
+                        "44"
+                    ]
+                ],
+                "isClosed": true,
+                "isRoundTrip": false,
+                "speed": 5,
+                "timeStep": 1,
+                "name": "node13",
+                "sourceCode": "node.c"
+            },
+            {
+                "functionPath": [
+                    [
+                        "117 + 24 * np.cos(2 * np.pi * t)",
+                        "-28 + 52 * np.sin(2 * np.pi * t)"
+                    ]
+                ],
+                "isClosed": true,
+                "isRoundTrip": false,
+                "speed": 5,
+                "timeStep": 1,
+                "name": "node14",
+                "sourceCode": "node.c"
+            },
+            {
+                "functionPath": [
+                    [
+                        "-114*(1-t)-64*t",
+                        "61*(1-t)+20*t"
+                    ],
+                    [
+                        "-64",
+                        "20-82*t"
+                    ],
+                    [
+                        "-64+136*t",
+                        "-62"
+                    ]
+                ],
+                "isClosed": false,
+                "isRoundTrip": true,
+                "speed": 5,
+                "timeStep": 1,
+                "name": "node15",
+                "sourceCode": "node.c"
+            },
+            {
+                "functionPath": [
+                    [
+                        "-134+50*t",
+                        "16"
+                    ],
+                    [
+                        "-84",
+                        "16-98*t"
+                    ],
+                    [
+                        "-84-50*t",
+                        "-82"
+                    ],
+                    [
+                        "-134",
+                        "-82+98*t"
+                    ]
+                ],
+                "isClosed": true,
+                "isRoundTrip": false,
+                "speed": 5,
+                "timeStep": 1,
+                "name": "node16",
+                "sourceCode": "node.c"
+            },
+            {
+                "functionPath": [
+                    [
+                        "114*(1-t)+56*t",
+                        "80*(1-t)-33*t"
+                    ],
+                    [
+                        "56 - 77*t",
+                        "-33"
+                    ]
+                ],
+                "isClosed": false,
+                "isRoundTrip": true,
+                "speed": 5,
+                "timeStep": 1,
+                "name": "node17",
+                "sourceCode": "node.c"
+            },
+            {
+                "functionPath": [
+                    [
+                        "-54+108*t",
+                        "-81"
+                    ]
+                ],
+                "isClosed": false,
+                "isRoundTrip": true,
+                "speed": 5,
+                "timeStep": 1,
+                "name": "node18",
+                "sourceCode": "node.c"
+            }
+        ]
+    }
+}

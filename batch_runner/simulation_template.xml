@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simconf version="2023090101">
+  <simulation>
+    <title>My simulation</title>
+    <randomseed>123456</randomseed>
+    <motedelay_us>1000000</motedelay_us>
+    <radiomedium>
+      org.contikios.cooja.radiomediums.UDGM
+      <transmitting_range>50.0</transmitting_range>
+      <interference_range>100.0</interference_range>
+      <success_ratio_tx>1.0</success_ratio_tx>
+      <success_ratio_rx>1.0</success_ratio_rx>
+    </radiomedium>
+    <events>
+      <logoutput>40000</logoutput>
+    </events>
+    <motetype>
+      org.contikios.cooja.contikimote.ContikiMoteType
+      <description>server</description>
+      <source>/opt/contiki-ng/tools/cooja/root.c</source>
+      <commands>$(MAKE) -j$(CPUS) root.cooja TARGET=cooja</commands>
+      <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.Battery</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiVib</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiMoteID</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiRS232</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiBeeper</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.IPAddress</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiRadio</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiButton</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiPIR</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiClock</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiLED</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiCFS</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiEEPROM</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.Mote2MoteRelations</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.MoteAttributes</moteinterface>
+      <mote>
+        <interface_config>
+          org.contikios.cooja.interfaces.Position
+          <pos x="0.0" y="0.0" />
+        </interface_config>
+        <interface_config>
+          org.contikios.cooja.contikimote.interfaces.ContikiMoteID
+          <id>1</id>
+        </interface_config>
+      </mote>
+    </motetype>
+    <motetype>
+      org.contikios.cooja.contikimote.ContikiMoteType
+      <description>client</description>
+      <source>/opt/contiki-ng/tools/cooja/node.c</source>
+      <commands>$(MAKE) -j$(CPUS) node.cooja TARGET=cooja</commands>
+      <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.Battery</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiVib</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiMoteID</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiRS232</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiBeeper</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.IPAddress</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiRadio</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiButton</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiPIR</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiClock</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiLED</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiCFS</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiEEPROM</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.Mote2MoteRelations</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.MoteAttributes</moteinterface>
+      <mote>
+        <interface_config>
+          org.contikios.cooja.interfaces.Position
+          <pos x="0.0" y="1.0" />
+        </interface_config>
+        <interface_config>
+          org.contikios.cooja.contikimote.interfaces.ContikiMoteID
+          <id>2</id>
+        </interface_config>
+      </mote>
+    </motetype>
+  </simulation>
+  <plugin>
+    org.contikios.cooja.plugins.ScriptRunner
+    <plugin_config>
+      <script><![CDATA[
+        // veja https://github.com/contiki-os/contiki/wiki/Using-Cooja-Test-Scripts-to-Automate-Simulations
+        
+        log.log("Initializing simulation script\n");
+        log.log("Time: " + time + "\n");
+        
+        var initTime = time;
+        const timeOut = X * 1000; // X min.
+        TIMEOUT(X); // Timeout X min. mais 1 segundo de tolerância
+        
+        // Inicia a simulação
+        sim.startSimulation();
+
+        // Aguarda até que o tempo de simulação acabe
+        while (time < initTime + timeOut) {
+          YIELD(); // Aguarda eventos na simulação
+
+          /*
+          // Utilizei este trecho apenas para validar que o movimento funciona na execução com docker
+          // Obtém o mote com determinado id, no caso mote atual
+          var mote = sim.getMote(id-1);
+
+          // Obtém a interface de posição do mote
+          var position = mote.getInterfaces().getPosition();
+
+          // A partir da interface, obtenha as coordenadas X e Y
+          var x = position.getXCoordinate();
+          var y = position.getYCoordinate();
+
+          log.log("Mote " + id + " current position: (" + x + ", " + y + ")\n");
+          */
+
+          log.log("[Mote:" + id + "] " + msg + "\n");
+        }
+
+        // Finaliza a simulação
+        sim.stopSimulation();
+
+        // Loga o tempo final da simulação
+        log.log("Final simulation time: " + sim.getSimulationTime() + " ms\n");
+      ]]></script>
+    </plugin_config>
+  </plugin>
+  <plugin>
+    org.contikios.cooja.plugins.LogListener
+    <plugin_config>
+      <filter />
+      <formatted_time />
+      <coloring />
+      <append>/opt/contiki-ng/tools/cooja/loglistener_append.txt</append>
+    </plugin_config>
+    <bounds x="513" y="0" height="723" width="817" z="2" />
+  </plugin>
+  <plugin>
+    org.contikios.cooja.plugins.Mobility
+    <plugin_config>
+      <positions>/opt/contiki-ng/tools/cooja/positions.dat</positions>
+    </plugin_config>
+    <bounds x="7" y="517" height="200" width="500" />
+  </plugin>
+</simconf>

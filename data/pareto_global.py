@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 # ------------------------------------------------------------
 
 MILP_DIR = Path("./simulation/milp-mobile/output")
-SIMLAB_FILE = Path("./simlab/generations_p2_csma_tsch.json")
+SIMLAB_FILE = Path("./simlab/generations_p2_csma.json")
 
 OBJECTIVES = ("latency", "energy", "throughput")
 MINIMIZE = [True, True, False]  # latency ↓, energy ↓, throughput ↑
